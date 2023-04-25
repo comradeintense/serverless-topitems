@@ -1,6 +1,20 @@
 const { parse } = require('node-html-parser');
 
+const headers = {
+	'Access-Control-Allow-Origin': '*',
+	'Access-Control-Allow-Headers': 'Content-Type',
+	'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE',
+};
+
 exports.handler = async function (event, context) {
+	if (event.httpMethod === 'OPTIONS') {
+		return {
+			statusCode: 200,
+			headers,
+			body: '',
+		};
+	}
+
 	try {
 		const fetch = (await import('node-fetch')).default;
 		const url =
@@ -22,12 +36,14 @@ exports.handler = async function (event, context) {
 
 		return {
 			statusCode: 200,
+			headers,
 			body: JSON.stringify(top9Ids),
 		};
 	} catch (error) {
 		console.error(error);
 		return {
 			statusCode: 500,
+			headers,
 			body: JSON.stringify({ error: 'Failed to fetch data' }),
 		};
 	}
