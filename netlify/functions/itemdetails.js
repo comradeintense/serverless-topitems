@@ -22,9 +22,11 @@ exports.handler = async function (event, context) {
 		}
 
 		const url = `https://api.steampowered.com/IPublishedFileService/GetDetails/v1/?key=${apiKey}&publishedfileids[0]=${itemId}&includevotes=true`;
+		console.log(`Request URL: ${url}`);
 
 		const response = await fetch(url);
 		const data = await response.json();
+		console.log(`Response data: ${JSON.stringify(data)}`);
 
 		if (
 			data.response &&
