@@ -8,10 +8,11 @@
   ## Not needed for static site generators.
 [[redirects]]
   from = "/.netlify/functions/itemdetails/:itemId"
-  to = "/.netlify/functions/itemdetails"
+  to = "/.netlify/functions/itemdetails?itemId=:itemId"
   status = 200
   force = true
   params = {itemId = ":itemId"}
+
 
   ## (optional) Settings for Netlify Dev
   ## https://github.com/netlify/cli/blob/main/docs/netlify-dev.md#project-detection
