@@ -9,10 +9,35 @@ exports.handler = async function (event, context) {
 		const fetch = (await import('node-fetch')).default;
 		const apiKey = process.env.STEAM_API_KEY || 'default_api_key';
 		const itemId = event.queryStringParameters.itemId;
+
+		if (!itemId) {
+			return {
+				statusCode: 400,
+				headers,
+				body: JSON.stringify({
+					error: 'No itemId provided.',
+				}),
+			};
+		}
+
 		const url = `https://api.steampowered.com/IPublishedFileService/GetDetails/v1/?key=${apiKey}&publishedfileids[0]=${itemId}&includevotes=true`;
 
 		const response = await fetch(url);
 		const data = await response.json();
+
+		if (
+			data.response &&
+			data.response.publishedfiledetails &&
+			data.response.publishedfiledetails[0].result !== 1
+		) {
+			return {
+				statusCode: 404,
+				headers,
+				body: JSON.stringify({
+					error: 'Item not found or invalid itemId.',
+				}),
+			};
+		}
 
 		return {
 			statusCode: 200,
