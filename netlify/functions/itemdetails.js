@@ -9,7 +9,7 @@ exports.handler = async function (event, context) {
 		const fetch = (await import('node-fetch')).default;
 		const apiKey = process.env.STEAM_API_KEY || 'default_api_key';
 		console.log(`API Key: ${apiKey}`);
-		const itemId = event.queryStringParameters.itemId;
+		const itemId = event.path.split('/').pop();
 
 		if (!itemId) {
 			return {
