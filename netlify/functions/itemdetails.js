@@ -23,6 +23,7 @@ exports.handler = async function (event, context) {
 		console.error(error);
 		return {
 			statusCode: 500,
+			headers,
 			body: JSON.stringify({
 				error: 'An error occurred while fetching item details.',
 			}),
