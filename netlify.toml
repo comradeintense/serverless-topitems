@@ -11,7 +11,7 @@
   to = "/.netlify/functions/itemdetails"
   status = 200
   force = true
-  query = {itemId = ":itemId"}
+  params = {itemId = ":itemId"}
 
   ## (optional) Settings for Netlify Dev
   ## https://github.com/netlify/cli/blob/main/docs/netlify-dev.md#project-detection
