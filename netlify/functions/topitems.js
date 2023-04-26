@@ -1,3 +1,4 @@
+import fetch from 'node-fetch';
 const { parse } = require('node-html-parser');
 
 const headers = {
@@ -16,7 +17,6 @@ exports.handler = async function (event, context) {
 	}
 
 	try {
-		const fetch = (await import('node-fetch')).default;
 		const url =
 			'https://steamcommunity.com/workshop/browse/?appid=255710&browsesort=trend&section=readytouseitems';
 		const response = await fetch(url);

@@ -1,3 +1,5 @@
+import fetch from 'node-fetch';
+
 const headers = {
 	'Access-Control-Allow-Origin': '*',
 	'Access-Control-Allow-Headers': 'Content-Type',
@@ -6,7 +8,6 @@ const headers = {
 
 exports.handler = async function (event, context) {
 	try {
-		const fetch = (await import('node-fetch')).default;
 		const apiKey = process.env.STEAM_API_KEY || 'default_api_key';
 		console.log(`API Key: ${apiKey}`);
 		const itemId = event.path.split('/').pop();
