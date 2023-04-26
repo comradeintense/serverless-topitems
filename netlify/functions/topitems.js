@@ -1,4 +1,4 @@
-import fetch from 'node-fetch';
+const fetch = require('node-fetch');
 const { parse } = require('node-html-parser');
 
 const headers = {
