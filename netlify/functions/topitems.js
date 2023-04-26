@@ -1,5 +1,5 @@
-const fetch = require('node-fetch');
-const { parse } = require('node-html-parser');
+import fetch from 'node-fetch';
+import { parse } from 'node-html-parser';
 
 const headers = {
 	'Access-Control-Allow-Origin': '*',
