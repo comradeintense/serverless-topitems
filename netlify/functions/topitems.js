@@ -1,5 +1,4 @@
-import fetch from 'node-fetch';
-import { parse } from 'node-html-parser';
+const { parse } = require('node-html-parser');
 
 const headers = {
 	'Access-Control-Allow-Origin': '*',
@@ -17,6 +16,7 @@ exports.handler = async function (event, context) {
 	}
 
 	try {
+		const fetch = (await import('node-fetch')).default;
 		const url =
 			'https://steamcommunity.com/workshop/browse/?appid=255710&browsesort=trend&section=readytouseitems';
 		const response = await fetch(url);
